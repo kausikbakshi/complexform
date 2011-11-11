@@ -1,0 +1,18 @@
+<div style="align: center; width: 283px;background: #7A80D6;padding-left: 20px;height: 30px;-webkit-border-radius: 9px;-moz-border-radius: 9px;-webkit-transform: skew(0deg,0deg);-moz-transform: skew(0deg,0deg);">
+  <h3>Create project With three Tasks</h3>
+</div>
+<% form_for :project, :url => projects_path do |f| %>
+  <p>
+    Name: <%= f.text_field :name %>
+  </p>
+  <% for task in @project.tasks %>
+    <% fields_for "project[task_attributes][]", task do |task_form| %>
+      <p>
+        &nbsp;&nbsp;Task: <%= task_form.text_field :name %>
+      </p>
+    <% end %>
+  <% end %>
+  <p><%= submit_tag "Create Project" %></p>
+<% end %>
+
+
